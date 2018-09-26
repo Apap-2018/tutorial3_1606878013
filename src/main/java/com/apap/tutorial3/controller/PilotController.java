@@ -44,7 +44,7 @@ public class PilotController {
         return "viewall-pilot";
     }
 
-    @RequestMapping("pilot/view/license-number/{licenseNumber}")
+    @RequestMapping("/pilot/view/license-number/{licenseNumber}")
     public String viewPilot(
             @PathVariable String licenseNumber,
             Model model)
@@ -53,5 +53,23 @@ public class PilotController {
 
         model.addAttribute("pilot", archive);
         return "view-pilot";
+    }
+
+    @RequestMapping("/pilot/update/license-number/{licenseNumber}/fly-hour/{newFlyHour}")
+    public String updateFlyHour(
+            @PathVariable String licenseNumber,
+            @PathVariable int newFlyHour,
+            Model model)
+    {
+        PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+
+        if (archive != null){
+            archive.setFlyHour(newFlyHour);
+            model.addAttribute("success", true);
+        }
+        else {
+            model.addAttribute("success", false);
+        }
+        return "update";
     }
 }
