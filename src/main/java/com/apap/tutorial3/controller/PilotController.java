@@ -33,4 +33,12 @@ public class PilotController {
         model.addAttribute("pilot", archive);
         return "view-pilot";
     }
+
+    @RequestMapping("/pilot/viewall")
+    public String viewall(Model model){
+        List<PilotModel> archive = pilotService.getPilotList();
+
+        model.addAttribute("listPilot", archive);
+        return "viewall-pilot";
+    }
 }
