@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class PilotController {
     @Autowired
@@ -22,5 +24,13 @@ public class PilotController {
         PilotModel pilot = new PilotModel(id, licenseNumber, name, flyHour);
         pilotService.addPilot(pilot);
         return "add";
+    }
+
+    @RequestMapping("/pilot/view")
+    public String view (@RequestParam("licenseNumber") String licenseNumber, Model model) {
+        PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+
+        model.addAttribute("pilot", archive);
+        return "view-pilot";
     }
 }
