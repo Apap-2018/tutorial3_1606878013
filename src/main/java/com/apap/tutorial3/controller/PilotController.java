@@ -72,4 +72,18 @@ public class PilotController {
         }
         return "update";
     }
+
+    @RequestMapping("/pilot/delete/id/{pilotId}")
+    public String deletePilot(
+            @PathVariable String pilotId,
+            Model model)
+    {
+        if (pilotService.deletePilot(pilotId)){
+            model.addAttribute("success", true);
+        }
+        else {
+            model.addAttribute("success", false);
+        }
+        return "delete";
+    }
 }

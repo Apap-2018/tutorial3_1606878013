@@ -35,4 +35,16 @@ public class PilotInMemoryService implements PilotService{
 
         return result;
     }
+
+    @Override
+    public boolean deletePilot(String pilotId){
+        boolean success = false;
+        for (int i = 0 ; i < archivePilot.size() ; i++){
+            if (archivePilot.get(i).getId().equals(pilotId)){
+                archivePilot.remove(i);
+                success = true;
+            }
+        }
+        return success;
+    }
 }

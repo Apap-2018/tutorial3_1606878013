@@ -9,4 +9,5 @@ public interface PilotService {
     void addPilot(PilotModel pilot);
     List<PilotModel> getPilotList();
     PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
+    boolean deletePilot(String pilotId);
 }
